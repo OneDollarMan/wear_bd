@@ -70,7 +70,7 @@ def users():
 def rm_user(id):
     if session.get('role') == repo.ROLE_ADMINISTRATOR:
         if id:
-            repo.hide_user_with_lists(id)
+            repo.hide_user(id)
     return redirect(url_for('users'))
 
 
