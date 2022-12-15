@@ -35,15 +35,15 @@ class UserForm(FlaskForm):
 
 
 class ClientForm(FlaskForm):
-    fio = StringField('ФИО', [Optional(), rus_length])
-    phone = DecimalField('Номер телефона', [Optional(), rus_number_range])
+    fio = StringField('ФИО', [rus_input_required, rus_length])
+    phone = DecimalField('Номер телефона', [rus_input_required, rus_number_range])
     submit = SubmitField('Добавить')
 
 
 class SupplierForm(FlaskForm):
     name = StringField('Наименование юр. лица', [rus_input_required, rus_length])
     address = StringField('Адрес', [rus_input_required, rus_length])
-    phone = DecimalField('Номер телефона', [Optional(), rus_number_range])
+    phone = DecimalField('Номер телефона', [rus_input_required, rus_number_range])
     submit = SubmitField('Добавить')
 
 
