@@ -136,7 +136,7 @@ def wear():
 def add_wear():
     add_form = forms.AddForm()
     add_form.wear_id.choices = repo.select_wear()
-    if session.get('role') == repo.ROLE_STOREKEEPER:
+    if session.get('role') >= repo.ROLE_STOREKEEPER:
         if add_form.validate_on_submit():
             repo.add_wear_amount(add_form.data)
             flash('Количество товара добавлено', 'info')
