@@ -1,0 +1,49 @@
+{% macro table(url, ths, trs, clickable=False, actions=True, actionsStorekeeper=False) %}
+<table class="table">
+    <tr>
+        <th>#</th>
+        {% for th in ths %}
+        <th>{{th}}</th>
+        {% endfor %}
+        {% if actions %}
+        {% if session.role == 2 or actionsStorekeeper %}
+        <th>Действия</th>
+        {% endif %}
+        {% endif %}
+    </tr>
+    {% for tr in trs%}
+    {% if clickable %}
+    <tr class='clickable-row' data-href='/{{url}}/{{tr[0]}}'>
+    {% else %}
+    <tr>
+    {% endif %}
+        <td>{{loop.index}}</td>
+        {% for i in range(1, ths|length+1) %}
+        <td>{{tr[i]}}</td>
+        {% endfor %}
+        {% if session.role == 2 or actionsStorekeeper %}
+        <td>
+            {% if actions %}
+            {% if tr[1] != 'root' %}
+            <a href="/{{url}}/rm/{{tr[0]}}">
+                <button class="btn btn-sm btn-primary">Удалить</button>
+            </a>
+            {% endif %}
+            {% endif %}
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{%- endmacro %}
+
+{% macro info_table(ths, trs) %}
+<table class="table">
+    {% for th in ths %}
+    <tr>
+        <td>{{th}}</td>
+        <td>{{trs[loop.index]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{%- endmacro %}

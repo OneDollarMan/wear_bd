@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import 'bootstrap5/form.html' as wtf %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                Список счетов
+            </div>
+            <div class="card-body">
+                {{ macros.table('invoices', ['Дата', 'Клиент', 'Статус'], invoices, clickable=True, actionsStorekeeper=True) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-sm-2">
+        {% if session.role >= 1 %}
+        <div class="card">
+            <div class="card-header">
+                Добавить счет
+            </div>
+            <div class="card-body">
+                {{ wtf.render_form(form, button_style='secondary', action='/invoices/add') }}
+            </div>
+        </div>
+        <br>
+        {% endif %}
+        <div class="card">
+            <div class="card-header">
+                Фильтры
+            </div>
+            <div class="card-body">
+                {{ wtf.render_form(filter_form, button_style='secondary') }}
+                <br>
+                <a href="/invoices"><button class="btn btn-danger">Сбросить</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

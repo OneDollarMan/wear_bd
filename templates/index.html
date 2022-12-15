@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block app_content %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                Статистика по количеству счетов работников
+            </div>
+            <div class="card-body">
+                {{ macros.table('users', ['ФИО работника', 'Количество счетов'], stat, actions=False) }}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

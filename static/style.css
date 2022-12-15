@@ -1,0 +1,11 @@
+.clickable-row {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-image: none;
+}

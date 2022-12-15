@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% import 'bootstrap5/form.html' as wtf %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                Список одежды
+            </div>
+            {{ macros.table('wear', ['Поставщик', 'Название', 'Остаток'], wear) }}
+        </div>
+    </div>
+
+    {% if session.role >= 1 %}
+    <div class="col col-sm-2">
+        {% if session.role >= 2 %}
+        <div class="card">
+            <div class="card-header">
+                Добавить одежду
+            </div>
+            <div class="card-body">
+                {{ wtf.render_form(form, button_style='secondary') }}
+            </div>
+        </div>
+        <br>
+        {% endif %}
+        <div class="card">
+            <div class="card-header">
+                Приход
+            </div>
+            <div class="card-body">
+                {{ wtf.render_form(add_form, button_style='secondary', action='/wear/add_amount') }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import 'bootstrap5/form.html' as wtf %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col-md-2 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Авторизация
+            </div>
+            <div class="card-body">
+                {{ wtf.render_form(form, button_style='secondary') }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
